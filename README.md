@@ -66,7 +66,7 @@
 
 ### 2、表间关系
 
-![image-20201030224211694](C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201030224211694.png)
+![image-20201030224211694](https://github.com/chong19951021/images/blob/main/picture/bz2.jpg)
 
 - 博客与用户是多对一的关系，一个用户可以有多个博客，一个博客只能对应一个用户
 - 博客和分类是多对一的关系：一个博客对应一个分类，一个分类可以对应多个博客
