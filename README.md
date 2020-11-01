@@ -66,9 +66,8 @@
 
 ### 2、表间关系
 
-<div align=center>
+
 <img src="https://s1.ax1x.com/2020/10/31/BNxpwt.png" style="width:600px;height:400px">
-</div>
 
 - 博客与用户是多对一的关系，一个用户可以有多个博客，一个博客只能对应一个用户
 - 博客和分类是多对一的关系：一个博客对应一个分类，一个分类可以对应多个博客
@@ -81,85 +80,76 @@
 
 博客字段：
 
-<img src="C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201030231237191.png" alt="image-20201030231237191" style="zoom:50%;" />
+<img src="https://s1.ax1x.com/2020/10/31/BNvBss.png" style="width:600px;height:400px">
 
 评论字段：
 
-<img src="C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201030231859251.png" alt="image-20201030231859251" style="zoom:50%;" />
+<img src="https://s1.ax1x.com/2020/10/31/BNv0Mj.png" style="width:600px;height:400px">
 
 留言字段：
 
-<img src="C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201030232542803.png" alt="image-20201030232542803" style="zoom:50%;" />
+<img src="https://s1.ax1x.com/2020/10/31/BNvdzQ.png" style="width:600px;height:400px">
 
 订阅字段：
 
-<img src="C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201030232818935.png" alt="image-20201030232818935" style="zoom:50%;" />
+<img src="https://s1.ax1x.com/2020/10/31/BNvUJS.png" style="width:600px;height:400px">
 
 标签字段：
 
-<img src="C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201030233147358.png" alt="image-20201030233147358" style="zoom:67%;" />
+<img src="https://s1.ax1x.com/2020/10/31/BNvDLn.png" style="width:600px;height:400px">
 
 分类字段：
 
-<img src="C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201030233349217.png" alt="image-20201030233349217" style="zoom: 50%;" />
+<img src="https://s1.ax1x.com/2020/10/31/BNvsZq.png" style="width:600px;height:400px">
 
 用户字段：
 
-<img src="C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201030233812964.png" alt="image-20201030233812964" style="zoom:50%;" />
+<img src="https://s1.ax1x.com/2020/10/31/BNv6oV.png" style="width:600px;height:400px">
 
 博客-标签中间表字段：
 
-<img src="C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201030234018438.png" alt="image-20201030234018438" style="zoom:50%;" />
+<img src="https://s1.ax1x.com/2020/10/31/BNztgg.png" style="width:600px;height:400px">
 
 ### 4、表结构
 
 博客表：
 
-<img src="C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201030234250477.png" alt="image-20201030234250477" style="zoom:50%;" />
+<img src="https://s1.ax1x.com/2020/10/31/BNvRWF.png" style="width:600px;height:400px">
 
-<img src="C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201030234332191.png" alt="image-20201030234332191" style="zoom:50%;" />
-
+<img src="https://s1.ax1x.com/2020/10/31/BNv2JU.png" style="width:600px;height:400px">
 
 
 评论表：
 
-<img src="C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201030234443088.png" alt="image-20201030234443088" style="zoom:50%;" />
+<img src="https://s1.ax1x.com/2020/10/31/BNvWz4.png" style="width:600px;height:400px">
 
-<img src="C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201030234558081.png" alt="image-20201030234558081" style="zoom:50%;" />
+<img src="https://s1.ax1x.com/2020/10/31/BNvhQJ.png" style="width:600px;height:400px">
 
 留言表：
 
-<img src="C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201030234645502.png" alt="image-20201030234645502" style="zoom:50%;" />
+<img src="https://s1.ax1x.com/2020/10/31/BNv4y9.png" style="width:600px;height:400px">
 
 订阅表：
 
-<img src="C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201030234730622.png" alt="image-20201030234730622" style="zoom:50%;" />
+<img src="https://s1.ax1x.com/2020/10/31/BNv5LR.png" style="width:600px;height:400px">
 
 标签表：
 
-<img src="C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201030234840623.png" alt="image-20201030234840623" style="zoom:50%;" />
+<img src="https://s1.ax1x.com/2020/10/31/BNvoe1.png" style="width:600px;height:400px">
 
 分类表：
 
-<img src="C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201030234915075.png" alt="image-20201030234915075" style="zoom:50%;" />
+<img src="https://s1.ax1x.com/2020/10/31/BNvTdx.png" style="width:600px;height:400px">
 
 用户表：
 
-<img src="C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201030234953922.png" alt="image-20201030234953922" style="zoom:50%;" />
+<img src="https://s1.ax1x.com/2020/10/31/BNv7o6.png" style="width:600px;height:400px">
 
 博客-标签中间表：
 
-<img src="C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201030235050411.png" alt="image-20201030235050411" style="zoom:50%;" />
+<img src="https://s1.ax1x.com/2020/10/31/BNvbFK.png" style="width:600px;height:400px">
 
-<img src="C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201030235130400.png" alt="image-20201030235130400" style="zoom:50%;" />
-
-
-
-
-
-本次关于数据库结构的介绍就到这里了，关于sql文件有需要的可以联系我。时间太晚，来不及弄了。
-
-
+<img src="https://s1.ax1x.com/2020/10/31/BNvqJO.png" style="width:600px;height:400px">
 
 ## 四、基本配置
 
@@ -167,26 +157,21 @@
 
 
 
-![image-20201031221713511](C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201031221713511.png)
+<img src="https://s1.ax1x.com/2020/10/31/BavYi6.png" style="width:600px;height:400px">
 
 
-
-![image-20201031223440293](C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201031223440293.png)
-
+<img src="https://s1.ax1x.com/2020/10/31/BavQsJ.png" style="width:600px;height:400px">
 
 
 ### 2、pom依赖
 
-![image-20201031224944811](C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201031224944811.png)
+<img src="https://s1.ax1x.com/2020/10/31/BavGIx.png" style="width:600px;height:400px">
 
-![image-20201031225309546](C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201031225309546.png)
+<img src="https://s1.ax1x.com/2020/10/31/Bav8d1.png" style="width:600px;height:400px">
 
-![image-20201031225527828](C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201031225527828.png)
+<img src="https://s1.ax1x.com/2020/10/31/Bav3ZR.png" style="width:600px;height:400px">
 
-
-
-![image-20201031225837210](C:\Users\宠\AppData\Roaming\Typora\typora-user-images\image-20201031225837210.png)
-
+<img src="https://s1.ax1x.com/2020/10/31/BavlL9.png" style="width:600px;height:400px">
 
 
 
