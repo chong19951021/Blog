@@ -66,7 +66,7 @@
 
 ### 2、表间关系
 
-<img src="https://s1.ax1x.com/2020/10/31/BNxpwt.png" width:"400";height:"400"/>
+<img src="https://s1.ax1x.com/2020/10/31/BNxpwt.png" style="width:600px;height:400px">
 
 - 博客与用户是多对一的关系，一个用户可以有多个博客，一个博客只能对应一个用户
 - 博客和分类是多对一的关系：一个博客对应一个分类，一个分类可以对应多个博客
@@ -78,7 +78,7 @@
 
 博客字段：
 
-<img src="https://s1.ax1x.com/2020/10/31/BNvBss.png" width:"600";height:"400">
+<img src="https://s1.ax1x.com/2020/10/31/BNvBss.png" style="width:600px;height:400px">
 
 评论字段：
 
