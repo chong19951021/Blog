@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lichong.dao.TagDao">
+
+    <!--新增保存标签-->
+    <insert id="saveTag" parameterType="com.lichong.entity.Tag">
+        insert into t_tag values (#{id},#{name})
+    </insert>
+
+    <!--根据id查询标签-->
+    <select id="getTag" resultType="com.lichong.entity.Tag">
+        select id,name from t_tag where id = #{id}
+    </select>
+
+    <!--查询所有标签-->
+    <select id="getAllTag" resultType="com.lichong.entity.Tag">
+        select * from t_tag
+    </select>
+    <!--根据标签名称名称来查询-->
+    <select id="getTagByName" resultType="com.lichong.entity.Tag">
+        select * from t_tag where name = #{name}
+    </select>
+
+    <!--编辑修改分类-->
+    <update id="updateTag" parameterType="com.lichong.entity.Tag">
+        update t_tag set name = #{name} where id = #{id}
+    </update>
+
+    <!--删除分类-->
+    <delete id="deleteTag" >
+        delete from t_tag where id = #{id}
+    </delete>
+    <!--根据id列表进行查询-->
+    <select id="listTag" parameterType="java.util.List"  resultType="com.lichong.entity.Tag" >
+       select * from t_tag where id in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>

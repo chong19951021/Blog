@@ -1,0 +1,9 @@
+
+logging:
+  level:
+    root: warn
+    com.lichong: info
+  file:
+    name: log.blog-pro.log
+server:
+  port: 8081

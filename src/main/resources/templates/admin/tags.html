@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>标签管理</title>
+    <link href="../../static/images/me.jpg" th:href="@{/images/me.jpg}" rel="icon" type="image/x-ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css" th:href="@{/css/me.css}">
+</head>
+<body>
+
+<!--导航栏-->
+<nav class="ui inverted gird-header" style="background-color: lightskyblue" >
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu">
+            <h2 class="ui  header item" style="font-family: 黑体;color: lightyellow">后台</h2>
+            <a href="/admin/blogs" class="m-item item m-mobile-hide"><i class="book icon"></i>文章管理</a>
+            <a href="/admin/types" class="m-item item m-mobile-hide"><i class="clone outline icon"></i>分类管理</a>
+            <a href="/admin/tags" class="m-item item m-mobile-hide"><i class="tag outline icon"></i>标签管理</a>
+            <a href="/admin/sub" class="m-item item m-mobile-hide"><i class="plug outline icon"></i>订阅管理</a>
+            <a href="/" class="m-item item m-mobile-hide"><i class="home outline icon"></i>首页</a>
+            <div class="right m-item m-mobile-hide menu">
+                <div class="ui dropdown  item">
+                    <div class="text">
+                        <img class="ui avatar image" src="../../static/images/lc.jpg" th:src="@{/images/lc.jpg}">
+                        <span>宠</span>
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a th:href="@{/admin/logout}" class="item">注销</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!--中间内容-->
+<div  class="m-padded-tb-big" style="margin-top: 50px">
+    <div class="ui container">
+        <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+            <i class="close icon"></i>
+            <div class="header">提示：</div>
+            <p th:text="${message}">恭喜，操作成功！</p>
+        </div>
+        <table class="ui compact teal table">
+            <thead>
+            <tr align="center">
+                <th>ID</th>
+                <th>名称</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr  align="center" th:each="tag,iterStat : ${pageInfo.list}">
+                <td id="me" th:text="${iterStat.count}">1</td>
+                <td id="one" th:text="${tag.name}">我的故事</td>
+                <td>
+                    <a href="#" th:onclick="show2([[${tag.id}]],[[${tag.name}]])" id="edit"  class="ui mini teal basic button">编辑</a>
+                    <a href="#" th:href="@{/admin/tagsDelete(id=${tag.id})}" onclick="return confirm('确定要删除该标签吗？三思啊! 删了可就没了！')" class="ui mini red basic button">删除</a>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th colspan="6" >
+                    <div class="ui inverted divided stackable grid" >
+                        <div class="three wide column" align="center">
+                            <a class="item" th:href="@{/admin/tags(pageNum=${pageInfo.prePage})}" th:unless="${pageInfo.isFirstPage}">上一页</a>
+                        </div>
+
+                        <div class="ten wide column" align="center">
+                            <p>第 <span th:text="${pageInfo.pageNum}">1</span> 页，共 <span th:text="${pageInfo.pages}">1</span> 页</p>
+                        </div>
+
+                        <div class="three wide column" align="center">
+                            <a class="item" th:href="@{/admin/tags(pageNum=${pageInfo.nextPage})}" th:unless="${pageInfo.isLastPage}">下一页</a>
+                        </div>
+                    </div>
+                    <div align="center">
+                        <button th:onclick="|show()|"  type="button"  class="ui teal button m-mobile-wide m-margin-top"><i class="pencil icon"></i>新增</button>
+                    </div>
+                </th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<!--模态框1-->
+<div id="model" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header" style="margin-left: 0px">
+        添加标签
+    </div>
+    <form action="#" th:action="@{/admin/tags}" method="post" class="ui form">
+        <input type="hidden" name="id">
+        <div class=" required field">
+            <div class="ui left labeled input">
+                <label class="ui teal basic label">名称</label>
+                <input type="text" name="name" placeholder="标签名称">
+            </div>
+        </div>
+        <div class="ui error message"></div>
+        <div class="actions" align="center">
+            <button id="sure" class="ui submit button">确定</button>
+        </div>
+    </form>
+
+</div>
+<!--模态框2-->
+<div class="ui modal" id="model2">
+    <i class="close icon"></i>
+    <div class="header" style="margin-left: 0px">
+        修改标签
+    </div>
+    <form action="#" th:action="@{/admin/tagsEdit}" method="post" class="ui form">
+        <input type="hidden"  id="his" name="id" >
+        <div class=" required field">
+            <div class="ui left labeled input">
+                <label class="ui teal basic label">名称</label>
+                <input type="text" id="content" name="name" >
+            </div>
+        </div>
+        <div class="ui error message"></div>
+        <div class="actions" align="center">
+            <button  class="ui submit button">确定</button>
+        </div>
+    </form>
+
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!--底部栏-->
+<footer class="ui inverted vertical segment m-padded-tb-massive m-opacity">
+
+    <!--容器-->
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+            <div class="four wide column">
+                <div style="font-size: large;font-weight: bold" class="ui inverted m-text-thin m-text-spaced m-margin-top-max" >联系我</div>
+                <div class="ui inverted link list" style="line-height: 20px">
+                    <div href="#" class="m-text-thin">Email：752124913@qq.com</div>
+                    <div href="#" class="m-text-thin">WeChat：17330548647</div>
+                </div>
+            </div>
+
+            <div class="four wide column" >
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <!--微信二维码-->
+                        <div style="font-size: large;font-weight: bold" class="ui inverted m-text-thin m-text-spaced " >微信</div>
+                        <img src="../static/images/wx.jpg" th:src="@{/images/wx.jpg}"  class="ui m-margin-top rounded image" alt="" style="width: 110px">
+                    </div>
+                </div>
+            </div>
+
+            <div class="four wide column">
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <!--微信二维码-->
+                        <div style="font-size: large;font-weight: bold" class="ui inverted m-text-thin m-text-spaced " >问题交流</div>
+                        <img src="../static/images/wx.jpg" th:src="@{/images/wx.jpg}"  class="ui m-margin-top rounded image" alt="" style="width: 110px">
+                    </div>
+                </div>
+            </div>
+            <!--博客运行时间统计-->
+            <div class="four wide column" >
+                <div class="ui inverted link list">
+                    <div class="item">
+                        <div style="font-size: large;font-weight: bold" class="ui inverted  m-text-thin m-text-spaced ">赞赏</div>
+                        <img src="../static/images/pay.jpg" th:src="@{/images/pay.jpg}" class="ui m-margin-top rounded image" alt="" style="width: 110px">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <div style="color: #F08047;margin-top: -18px" class="ui inverted m-text-thin m-text-spaced">在慢慢长大..<span id="htmer_time" class="item m-text-thin"></span>.. (*๓´╰╯`๓)</div>
+        <a rel="nofollow" href="http://www.beian.miit.gov.cn" target="_blank">冀ICP备2020025173号-1</a>
+    </div>
+    </div>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+
+<script>
+    function show() {
+        $('#model')
+            .modal('show')
+    }
+    function show2(id,name) {
+        $('#content').val(name);
+        $('#his').val(id);
+        $('#model2')
+            .modal('show')
+            .modal({
+                onShow    : function(){
+
+                }
+            })
+        ;
+
+    }
+
+
+
+
+
+
+    $('.ui.form').form({
+        fields : {
+            username : {
+                identifier: 'name',
+                rules: [{
+                    type : 'empty',
+                    prompt: '请输入标签名称'
+                }]
+            },
+        }
+    });
+
+
+    function off() {
+        $('.ui.modal')
+            .modal('hide');
+    }
+
+
+    // 运行时间统计
+    function secondToDate(second) {
+        if (!second) {
+            return 0;
+        }
+        var time = new Array(0, 0, 0, 0, 0);
+        if (second >= 365 * 24 * 3600) {
+            time[0] = parseInt(second / (365 * 24 * 3600));
+            second %= 365 * 24 * 3600;
+        }
+        if (second >= 24 * 3600) {
+            time[1] = parseInt(second / (24 * 3600));
+            second %= 24 * 3600;
+        }
+        if (second >= 3600) {
+            time[2] = parseInt(second / 3600);
+            second %= 3600;
+        }
+        if (second >= 60) {
+            time[3] = parseInt(second / 60);
+            second %= 60;
+        }
+        if (second > 0) {
+            time[4] = second;
+        }
+        return time;
+    }
+    function setTime() {
+        /*此处为网站的创建时间*/
+        var create_time = Math.round(new Date(Date.UTC(2020, 9, 24, 15, 15, 15)).getTime() / 1000);
+        var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
+        currentTime = secondToDate((timestamp - create_time));
+        currentTimeHtml = currentTime[0] + '年' + currentTime[1] + '天'
+            + currentTime[2] + '时' + currentTime[3] + '分' + currentTime[4]
+            + '秒';
+        document.getElementById("htmer_time").innerHTML = currentTimeHtml;
+    }
+    setInterval(setTime, 1000);
+
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+    $('.ui.dropdown').dropdown({
+        on : 'hover'
+    });
+
+    //消息提示关闭初始化
+    $('.message .close')
+        .on('click', function () {
+            $(this)
+                .closest('.message')
+                .transition('fade');
+        });
+
+</script>
+<!--<script type="text/javascript" th:inline="javascript">-->
+
+<!--  var basePath = [[${#httpServletRequest.getScheme() + "://" + #httpServletRequest.getServerName() + ":" + #httpServletRequest.getServerPort() + #httpServletRequest.getContextPath()}]];-->
+
+<!--  function type(){-->
+<!--    $.ajax({-->
+<!--      type: 'post',-->
+<!--      dataType: 'json',-->
+<!--      url: '/admin/types',-->
+<!--      data: {-->
+<!--        pageNum: '${pageInfo.prePage}'-->
+<!--      },-->
+<!--      cache: false,-->
+<!--      async: true,-->
+<!--      success: function (data) {-->
+<!--        var data = eval('(' + data + ')');-->
+<!--        $('#idUser').text(data.name);-->
+<!--        $('#idMsg').text(data.msg);-->
+<!--      }-->
+<!--    });-->
+<!--  };-->
+
+<!--</script>-->
+</body>
+</html>

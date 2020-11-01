@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>时间轴</title>
+  <link href="../static/images/logo.png" th:href="@{/images/logo.png}" rel="icon" type="image/x-ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+  <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
+  <link rel="stylesheet" href="../static/css/animate.css" th:href="@{/css/animate.css}">
+  <link rel="stylesheet" href="../static/lib/prism/prism.css" th:href="@{/lib/prism/prism.css}">
+  <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
+  <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+  <link rel="stylesheet" href="../static/css/timeline.css" th:href="@{/css/timeline.css}" >
+
+</head>
+<body>
+
+<!--导航-->
+<nav id="nav" class="gird-header" style="background-color: lightblue">
+  <div class="ui container">
+    <div class="ui inverted secondary stackable menu">
+            <span class="ui olive header item logo">
+                <img class="ui avatar image" src="../../static/images/LOGO2.png" th:src="@{/images/LOGO2.png}" style="opacity: 0.2">
+</span>
+      <!--<div class="right m-item item m-mobile-hide">-->
+      <a href="/" class=" m-item item" style="margin-left: 140px;"><i class="home icon"></i>首页</a>
+      <a href="/typelist"  class="m-item item"><i class="clone outline icon"></i>分类</a>
+      <a href="/timeline" class="m-item item"><i class="clock icon"></i>时间轴</a>
+      <a href="/message" class="m-item item"><i class="book icon"></i>留言板</a>
+      <a href="/taglist" class=" m-item item"><i class="bookmark outline icon"></i>标签</a>
+      <a href="/about" class="m-item item"><i class="info icon"></i>关于我</a>
+      <a href="/admin" class="m-item item"><i class="user icon"></i>后台</a>
+      <a href="/sub" class="m-item item"><i class="plug icon"></i>订阅</a>
+      <!--</div>-->
+      <div class="right m-item item">
+        <form name="search" action="#" th:action="@{/search}" method="post" target="_blank">
+          <div class="ui icon transparent input m-margin-tb-tiny" style="color: white">
+            <input style="color: white" type="text" name="query" placeholder="Search....">
+            <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-hide" style="display: none">
+    <i class="sidebar icon"></i>
+  </a>
+</nav>
+
+<!--顶部图片-->
+<!--<div class="m-bg-type_outer" style="width: 100%;height: 40%">-->
+<!--  <div style="margin-top: 100px">-->
+<!--    <div class="m-font-size-title m-right-bottom" align="center" style="font-family:'STXingkai';">MOJiTo</div>-->
+<!--    <div class="m-font-size-text-init-title m-margin-top" align="center">采菊东篱下，悠然见南山。</div>-->
+<!--  </div>-->
+<!--  <div class="m-bg-class_cover" >-->
+<!--    <div class="ui container" style="position: relative ;bottom: -540px;">-->
+<!--      <div class="ui container" align="center">-->
+<!--        <div class="ui horizontal link list" align="center">-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+<!--中间内容-->
+<div id="waypoint" class="m-margin-animated" style="margin-top: 100px" >
+  <div class="ui container">
+    <!--时间轴-->
+    <!--时间轴内容-->
+    <div class="doc-container  m-opacity" id="doc-container">
+      <section class="timeline">
+        <ul>
+          <li style="background: cornflowerblue !important;" class="" th:each="blog : ${blogs}">
+            <div>
+              <time th:text="${#dates.format(blog.createTime,'yyyy-MM-dd')}">2020-09-08</time>
+              <div class="scientist">
+                <a th:href="@{/blog/{id}(id=${blog.id})}"  target="_blank">
+                  <h3 class="state" th:text="${blog.title}" style="text-align:center;font-size: 16px;color: #000;">Junit单元测试</h3>
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</div>
+<div id="toolbar" class="m-padded m-fixed m-right-bottom" style="display: none">
+  <div class="ui vertical icon buttons ">
+    <button type="button" class="ui toc teal button" >目录</button>
+    <a href="#comment-container" class="ui teal button" >评论</a>
+    <div id="toTop-button" class="ui icon button" ><i class="chevron up icon"></i></div>
+  </div>
+</div>
+
+<div class="ui toc-container flowing popup transition hidden" style="width: 250px!important;">
+  <ol class="js-toc">
+
+  </ol>
+</div>
+
+
+
+
+
+<br>
+<br>
+<!--底部栏-->
+<footer class="ui inverted vertical segment m-padded-tb-massive m-opacity">
+
+  <!--容器-->
+  <div class="ui center aligned container">
+    <div class="ui inverted divided stackable grid">
+      <div class="four wide column">
+        <div style="font-size: large;font-weight: bold" class="ui inverted m-text-thin m-text-spaced m-margin-top-max" >联系我</div>
+        <div class="ui inverted link list" style="line-height: 20px">
+          <div href="#" class="m-text-thin">Email：752124913@qq.com</div>
+          <div href="#" class="m-text-thin">WeChat：17330548647</div>
+        </div>
+      </div>
+
+      <div class="four wide column" >
+        <div class="ui inverted link list">
+          <div class="item">
+            <!--微信二维码-->
+            <div style="font-size: large;font-weight: bold" class="ui inverted m-text-thin m-text-spaced " >微信</div>
+            <img src="../static/images/wx.jpg" th:src="@{/images/wx.jpg}"  class="ui m-margin-top rounded image" alt="" style="width: 110px">
+          </div>
+        </div>
+      </div>
+
+      <div class="four wide column">
+        <div class="ui inverted link list">
+          <div class="item">
+            <!--微信二维码-->
+            <div style="font-size: large;font-weight: bold" class="ui inverted m-text-thin m-text-spaced " >问题交流</div>
+            <img src="../static/images/wx.jpg" th:src="@{/images/wx.jpg}"  class="ui m-margin-top rounded image" alt="" style="width: 110px">
+          </div>
+        </div>
+      </div>
+      <!--博客运行时间统计-->
+      <div class="four wide column" >
+        <div class="ui inverted link list">
+          <div class="item">
+            <div style="font-size: large;font-weight: bold" class="ui inverted  m-text-thin m-text-spaced ">赞赏</div>
+            <img src="../static/images/pay.jpg" th:src="@{/images/pay.jpg}" class="ui m-margin-top rounded image" alt="" style="width: 110px">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ui inverted section divider"></div>
+    <div style="color: #F08047;margin-top: -18px" class="ui inverted m-text-thin m-text-spaced">在慢慢长大..<span id="htmer_time" class="item m-text-thin"></span>.. (*๓´╰╯`๓)</div>
+    <a rel="nofollow" href="http://www.beian.miit.gov.cn" target="_blank">冀ICP备2020025173号-1</a>
+  </div>
+  </div>
+
+</footer>
+
+<script type="text/javascript"
+        color="122 103 238" opacity='0.7' zIndex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+<script src="../static/lib/prism/prism.js" th:src="@{/lib/prism/prism.js}"></script>
+<script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+<script src="../static/lib/waypoints/jquery.waypoints.min.js" th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
+<script src="https://cdn.bootcss.com/echarts/3.7.1/echarts.min.js"></script>
+<script type="text/javascript" src="../static/css/timeline.js" th:src="@{/css/timeline.js}"></script>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script th:inline="javascript">
+  var items = document.querySelectorAll(".timeline li");
+
+  function isElementInViewport(el) {
+    var rect = el.getBoundingClientRect();
+    return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
+  function callbackFunc() {
+    for (var i = 0; i < items.length; i++) {
+      if (isElementInViewport(items[i])) {
+        if(!items[i].classList.contains("in-view")){
+          items[i].classList.add("in-view");
+        }
+      } else if(items[i].classList.contains("in-view")) {
+        items[i].classList.remove("in-view");
+      }
+    }
+  }
+
+  window.addEventListener("load", callbackFunc);
+  window.addEventListener("scroll", callbackFunc);
+  // $('.timeline').Timeline();
+</script>
+<script th:inline="javascript">
+
+  // $('#newblog-container').load(/*[[@{/footer/newblog}]]*/"/footer/newblog");
+
+
+  // 运行时间统计
+  function secondToDate(second) {
+    if (!second) {
+      return 0;
+    }
+    var time = new Array(0, 0, 0, 0, 0);
+    if (second >= 365 * 24 * 3600) {
+      time[0] = parseInt(second / (365 * 24 * 3600));
+      second %= 365 * 24 * 3600;
+    }
+    if (second >= 24 * 3600) {
+      time[1] = parseInt(second / (24 * 3600));
+      second %= 24 * 3600;
+    }
+    if (second >= 3600) {
+      time[2] = parseInt(second / 3600);
+      second %= 3600;
+    }
+    if (second >= 60) {
+      time[3] = parseInt(second / 60);
+      second %= 60;
+    }
+    if (second > 0) {
+      time[4] = second;
+    }
+    return time;
+  }
+  function setTime() {
+    /*此处为网站的创建时间*/
+    var create_time = Math.round(new Date(Date.UTC(2020, 9, 24, 15, 15, 15)).getTime() / 1000);
+    var timestamp = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
+    currentTime = secondToDate((timestamp - create_time));
+    currentTimeHtml = currentTime[0] + '年' + currentTime[1] + '天'
+            + currentTime[2] + '时' + currentTime[3] + '分' + currentTime[4]
+            + '秒';
+    document.getElementById("htmer_time").innerHTML = currentTimeHtml;
+  }
+  setInterval(setTime, 1000);
+
+  $('.menu.toggle').click(function () {
+    $('.m-item').toggleClass('m-mobile-hide');
+  });
+
+  // $('#payButton').popup({
+  //   popup : $('.payQR.popup'),
+  //   on : 'click',
+  //   position: 'bottom center'
+  // });
+
+  // tocbot.init({
+  //   // Where to render the table of contents.
+  //   tocSelector: '.js-toc',
+  //   // Where to grab the headings to build the table of contents.
+  //   contentSelector: '.js-toc-content',
+  //   // Which headings to grab inside of the contentSelector element.
+  //   headingSelector: 'h1, h2, h3',
+  // });
+
+  // $('.toc.button').popup({
+  //   popup : $('.toc-container.popup'),
+  //   on : 'click',
+  //   position: 'left center'
+  // });
+  // $('.shape').shape('flip up');
+
+  // $('.wechat').popup({
+  //   popup : $('.wechat-qr'),
+  //   position: 'left center'
+  // });
+
+
+  $('#toTop-button').click(function () {
+    $(window).scrollTo(0,500);
+  });
+
+
+  // var waypoint = new Waypoint({
+  //   element: document.getElementById('waypoint'),
+  //   handler: function(direction) {
+  //     if (direction == 'down') {
+  //       $('#toolbar').show(100);
+  //     } else {
+  //       $('#toolbar').hide(500);
+  //     }
+  //     console.log('Scrolled to waypoint!  ' + direction);
+  //   }
+  // })
+
+
+  var waypoint = new Waypoint({
+    element: document.getElementById('waypoint'),
+    handler: function(direction) {
+      if (direction == 'down') {
+        $('#nav').show(500);
+      } else {
+        $('#nav').hide(500);
+      }
+      console.log('Scrolled to waypoint!  ' + direction);
+    }
+  })
+
+
+
+</script>
+</body>
+</html>

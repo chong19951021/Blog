@@ -1,0 +1,50 @@
+spring:
+  rabbitmq:
+    host: 39.104.21.15
+    username: guest
+    password: guest
+    virtual-host: /
+    listener:
+      simple:
+        acknowledge-mode: manual
+  mail:
+    host: smtp.qq.com
+    username: 752124913@qq.com
+    password: napbbbbotljbbbdf
+    default-encoding: utf-8
+    port: 587
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.connectiontimeout: 5000
+      mail.smtp.timeout: 5000
+      mail.smtp.writetimeout: 5000
+      mail.smtp.starttls.enabl: true
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://39.104.21.15:3306/blog?useSSL=false&serverTimezone=GMT%2B8&characterEncoding=utf-8
+    username: root
+    password: 421521
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      initialSize: 5
+      maxActive: 10
+      maxWait: 3000
+      minIdle: 3
+      validationQuery: SELECT 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+  thymeleaf:
+    mode: HTML
+  redis:
+    host: 39.104.21.15
+    port: 6379
+  profiles:
+    active: dev
+mybatis:
+  type-aliases-package: com.lichong.entity
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+comment.avatar: /images/yuncai.jpg

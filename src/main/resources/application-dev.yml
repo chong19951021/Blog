@@ -1,0 +1,7 @@
+
+logging:
+  level:
+    root: warn
+    com.lichong: info
+  file:
+    name: log/blog-dev.log
