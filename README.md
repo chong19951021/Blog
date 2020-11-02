@@ -1,4 +1,10 @@
 # Blog
+
+基于springboot+mybatis+thymeleaf+redis+rabbitmq的个人博客系统<br/>
+网站链接为：www.lchub.icu <br/>
+有兴趣的小伙伴可以去参观，留言。<br/>
+使用该源码希望能够注明原博客以及源码出处，并禁止商用。
+
 # 技术说明
 
   ## 一、技术栈
